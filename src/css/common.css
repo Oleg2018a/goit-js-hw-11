@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+.search-form {
+    max-width: 1440px;
+    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(195, 238, 190);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.input-form {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  padding: 5px 10px 5px 10px;
+  margin-right: 10px;
+}
+.search-btn {
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10%;
+  border-color: transparent;
+}
+.gallery {
+    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-top: 10px;
+}
+/* photo card */
+.photo-card {
+}
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+}
+b {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info-item {
+  text-align: center;
+}
+img {
+  width: 320px;
+  height: 210px;
+}
+.load-more {
+  background-color: antiquewhite;
+  color: blueviolet;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10%;
+  border-color: transparent;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+

@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./css/common.css">
     <title>Homework-11</title>
 </head>
 <body>
     <form class="search-form" id="search-form">
      <input
+     class="input-form"
        type="text"
        name="searchQuery"
      autocomplete="off"
        placeholder="Search images..."
   />
-  <button type="submit">Search</button>
+  <button class="search-btn" type="submit">Search</button>
 </form>
+<div id="image-gallery" class="gallery">
+  <!-- Картки зображень -->
+</div>
+
+<button type="button" class="load-more hidden">Load more</button>
+<script type="module" src="./index.js"></script>
 </body>
 </html>
+
+
