@@ -1,11 +1,9 @@
 
-import axios from 'axios';
 import Notiflix from 'notiflix';
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import { fetchImages } from './js/pixabay-api';
 
-const API_KEY = '38616901-e7b0e5046f7c06c2a4d7939a7';
-const BASE_URL = 'https://pixabay.com/api/';
 const PER_PAGE = 40;
 
 const form = document.getElementById('search-form');
@@ -19,38 +17,30 @@ let totalHits = 0;
 form.addEventListener('submit', onFormSubmit);
 loadMoreBtn.addEventListener('click', onLoadMoreClick);
 
-function onFormSubmit(evt) {
+async function onFormSubmit(evt) {
   evt.preventDefault();
   searchQuery = form.elements.searchQuery.value;
   currentPage = 1;
 
   loadMoreBtn.style.display = 'none';
-  fetchImages();
+  try {
+    const data = await fetchImages(searchQuery, currentPage, PER_PAGE);
+    totalHits = data.totalHits;
+    Notiflix.Notify.info(`Hooray! We found ${totalHits} images`);
+    displayImages(data.hits);
+  } catch (error) {
+    Notiflix.Notify.failure(error.message);
+  }
 }
 
-function onLoadMoreClick() {
+async function onLoadMoreClick() {
   currentPage++;
-  fetchImages();
-}
-
-function fetchImages() {
-  const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(
-    searchQuery
-  )}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${PER_PAGE}&page=${currentPage}`;
-
-  axios
-    .get(url)
-    .then(response => {
-      totalHits = response.data.totalHits;
-      Notiflix.Notify.info(`Hooray! We found ${totalHits} images`);
-
-      const images = response.data.hits;
-      displayImages(images);
-    })
-    .catch(error => {
-      console.error(error);
-      Notiflix.Notify.failure('Error fetching images');
-    });
+  try {
+    const data = await fetchImages(searchQuery, currentPage, PER_PAGE);
+    displayImages(data.hits);
+  } catch (error) {
+    Notiflix.Notify.failure(error.message);
+  }
 }
 
 function displayImages(images) {
@@ -99,3 +89,4 @@ const lightbox = new SimpleLightbox('.gallery a', {
     }
   }
 }
+
