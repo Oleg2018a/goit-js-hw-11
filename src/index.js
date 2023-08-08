@@ -17,6 +17,10 @@ let totalHits = 0;
 form.addEventListener('submit', onFormSubmit);
 loadMoreBtn.addEventListener('click', onLoadMoreClick);
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+});
+
 async function onFormSubmit(evt) {
   evt.preventDefault();
   searchQuery = form.elements.searchQuery.value.trim();
@@ -85,9 +89,7 @@ function displayImages(images) {
   }
 
   imageGallery.insertAdjacentHTML('beforeend', imageCards.join('')); 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionDelay: 250,
-});
+
   lightbox.refresh();
   if (currentPage * PER_PAGE < totalHits) {
     loadMoreBtn.style.display = 'block';
